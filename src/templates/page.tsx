@@ -4,6 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Container } from "theme-ui";
 
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 /** @jsx jsx */
 import { jsx } from "theme-ui";
@@ -22,6 +23,7 @@ interface PageProps {
 const Page: FC<PageProps> = ({ data }) => {
   return (
     <Layout>
+      <SEO title={data.mdx.frontmatter.title} />
       <Container
         sx={{
           maxWidth: "ms",

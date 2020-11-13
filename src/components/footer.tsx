@@ -1,16 +1,16 @@
 import React, { FC } from "react";
-import { Link } from "theme-ui";
 
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, Box, Styled } from "theme-ui";
 
 const Footer: FC = () => {
   const { author, links } = useSiteMetadata();
 
   return (
-    <footer
+    <Box
+      as="footer"
       sx={{
         borderTop: "1px solid",
         borderTopColor: "muted",
@@ -19,15 +19,14 @@ const Footer: FC = () => {
     >
       <p
         sx={{
-          font: "heading",
           textAlign: "center",
           margin: 0,
         }}
       >
         {author} © 2016 - {new Date().getFullYear()} |{" "}
-        <Link href={links.source}>Source</Link>
+        <Styled.a href={links.source}>Source</Styled.a>
       </p>
-    </footer>
+    </Box>
   );
 };
 

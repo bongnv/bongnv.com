@@ -74,6 +74,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     edges: result.data.pages.edges,
     template: path.resolve("src/templates/page.tsx"),
   });
+
+  buildPages({
+    createPage,
+    edges: result.data.posts.edges,
+    template: path.resolve("src/templates/post.tsx"),
+  });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -90,7 +96,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: "slug",
       node,
-      value: isBlogPost ? `blog/${slug}` : slug,
+      value: isBlogPost ? `/blog${slug}` : slug,
     });
 
     createNodeField({
