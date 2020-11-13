@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Link } from "gatsby";
 
 import { useSiteMetadata } from "../hooks/use-site-metadata";
@@ -12,12 +12,24 @@ import { jsx, Box, Container } from "theme-ui";
 const Header: FC = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const { title } = useSiteMetadata();
-  const onMenuClick = () => {
-    setMenuVisible(!menuVisible);
-  };
+  const onMenuClick = () => setMenuVisible(!menuVisible);
+
+  useEffect(() => {
+    if (menuVisible) {
+      const eventHandler = (): void => setMenuVisible(false);
+      window.addEventListener("click", eventHandler);
+      window.addEventListener("scroll", eventHandler);
+
+      return (): void => {
+        window.removeEventListener("click", eventHandler);
+        window.removeEventListener("scroll", eventHandler);
+      };
+    }
+  }, [menuVisible]);
 
   return (
-    <header
+    <Box
+      as="header"
       sx={{
         position: "fixed",
         top: 0,
@@ -59,7 +71,7 @@ const Header: FC = () => {
         </Box>
       </Container>
       {menuVisible && <MobileNav />}
-    </header>
+    </Box>
   );
 };
 
