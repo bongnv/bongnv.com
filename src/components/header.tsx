@@ -1,18 +1,20 @@
-import React, { FC } from "react";
-import { Box, Container } from "theme-ui";
+import React, { FC, useState } from "react";
 import { Link } from "gatsby";
-// import { Menu, X } from "react-feather";
 
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Nav from "./nav";
+import MenuBtn from "./menu-btn";
+import MobileNav from "./mobile-nav";
 
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, Box, Container } from "theme-ui";
 
 const Header: FC = () => {
+  const [menuVisible, setMenuVisible] = useState(false);
   const { title } = useSiteMetadata();
-
-  // const MenuBtn = Menu;
+  const onMenuClick = () => {
+    setMenuVisible(!menuVisible);
+  };
 
   return (
     <header
@@ -53,11 +55,10 @@ const Header: FC = () => {
             {title}
           </Link>
           <Nav />
-          {/* <MenuBtn sx={{
-            display: ["block", "none"],
-          }} /> */}
+          <MenuBtn closed={!menuVisible} onClick={onMenuClick} />
         </Box>
       </Container>
+      {menuVisible && <MobileNav />}
     </header>
   );
 };

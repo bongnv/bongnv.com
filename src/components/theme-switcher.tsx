@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Moon, Sun } from "react-feather";
 
 /** @jsx jsx */
-import { jsx, Box, useColorMode } from "theme-ui";
+import { jsx, IconButton, useColorMode } from "theme-ui";
 
 const ThemeSwitcher: FC = () => {
   const [colorMode, setColorMode] = useColorMode();
@@ -12,15 +12,11 @@ const ThemeSwitcher: FC = () => {
   };
 
   return (
-    <Box
-      as="button"
-      bg="background"
-      color="text"
+    <IconButton
+      size={24}
       onClick={onClick}
       sx={{
-        border: "none",
         padding: "0px",
-        height: "24px",
         "&:focus": {
           outline: "none",
         },
@@ -30,7 +26,7 @@ const ThemeSwitcher: FC = () => {
       }}
     >
       {colorMode === "default" ? <Sun /> : <Moon />}
-    </Box>
+    </IconButton>
   );
 };
 
