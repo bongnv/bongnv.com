@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import { Container } from "theme-ui";
 
 import Layout from "../components/layout";
 
@@ -21,7 +22,13 @@ interface PageProps {
 const Page: FC<PageProps> = ({ data }) => {
   return (
     <Layout>
-      <MDXRenderer>{data.mdx.body}</MDXRenderer>
+      <Container
+        sx={{
+          maxWidth: "ms",
+        }}
+      >
+        <MDXRenderer>{data.mdx.body}</MDXRenderer>
+      </Container>
     </Layout>
   );
 };
