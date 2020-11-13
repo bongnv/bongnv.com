@@ -6,6 +6,18 @@
 const path = require("path");
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
+const buildPages = ({ edges, createPage, template }) => {
+  edges.forEach((edge) => {
+    createPage({
+      path: edge.node.fields.slug,
+      component: template,
+      context: {
+        id: edge.node.id,
+      },
+    });
+  });
+};
+
 // You can delete this file if you're not using it
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
@@ -56,6 +68,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   console.log("Pages", result.data.pages.edges);
   console.log("Posts", result.data.posts.edges);
   console.log("TagsGroup", result.data.tagsGroup.edges);
+
+  buildPages({
+    createPage,
+    edges: result.data.pages.edges,
+    template: path.resolve("src/templates/page.tsx"),
+  });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
