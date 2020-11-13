@@ -1,10 +1,19 @@
 import React, { FC } from "react";
 import { Box, Container } from "theme-ui";
+import { Link } from "gatsby";
+// import { Menu, X } from "react-feather";
+
+import { useSiteMetadata } from "../hooks/use-site-metadata";
+import Nav from "./nav";
 
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 
 const Header: FC = () => {
+  const { title } = useSiteMetadata();
+
+  // const MenuBtn = Menu;
+
   return (
     <header
       sx={{
@@ -13,7 +22,7 @@ const Header: FC = () => {
         zIndex: 5,
         width: "screenWidth",
         backgroundColor: "background",
-        font: "heading",
+        fontFamily: "heading",
       }}
     >
       <Container
@@ -27,9 +36,26 @@ const Header: FC = () => {
             borderBottom: "1px solid",
             borderBottomColor: "muted",
             paddingY: 2,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <p>This is a header</p>
+          <Link
+            sx={{
+              fontSize: [3, 4],
+              textDecoration: "none",
+              fontWeight: "heading",
+              color: "text",
+            }}
+            to="/"
+          >
+            {title}
+          </Link>
+          <Nav />
+          {/* <MenuBtn sx={{
+            display: ["block", "none"],
+          }} /> */}
         </Box>
       </Container>
     </header>

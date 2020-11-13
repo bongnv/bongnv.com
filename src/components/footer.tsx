@@ -1,25 +1,13 @@
 import React, { FC } from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import { Link } from "theme-ui";
+
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 
 const Footer: FC = () => {
-  const data = useStaticQuery(graphql`
-    query SiteMetadataQuery {
-      site {
-        siteMetadata {
-          author
-          links {
-            source
-          }
-        }
-      }
-    }
-  `);
-
-  const meta = data.site.siteMetadata;
+  const { author, links } = useSiteMetadata();
 
   return (
     <footer
@@ -36,8 +24,8 @@ const Footer: FC = () => {
           margin: 0,
         }}
       >
-        {meta.author} © 2016 - {new Date().getFullYear()} |{" "}
-        <Link href={meta.links.source}>Source</Link>
+        {author} © 2016 - {new Date().getFullYear()} |{" "}
+        <Link href={links.source}>Source</Link>
       </p>
     </footer>
   );

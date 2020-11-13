@@ -9407,6 +9407,7 @@ fsevents@~2.1.2:
     prop-types: ^15.7.2
     react: ^16.12.0
     react-dom: ^16.12.0
+    react-feather: ^2.0.8
     react-helmet: ^6.1.0
     rehype-slug: ^4.0.0
     theme-ui: ^0.3.3
@@ -16032,6 +16033,17 @@ fsevents@~2.1.2:
   version: 3.2.0
   resolution: "react-fast-compare@npm:3.2.0"
   checksum: 6fe65c889eb4f326e97769135f97b3d63ac68737866f9c37f9625c9de4f5eaa9abed6f748eb3fd6a66808392118842916309cab7cfa99c67991f0c837433d6d2
+  languageName: node
+  linkType: hard
+
+"react-feather@npm:^2.0.8":
+  version: 2.0.8
+  resolution: "react-feather@npm:2.0.8"
+  dependencies:
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ^16.8.6
+  checksum: 4ee127f65bacf3e95cb416c9da5e671323b9c518e98773cb388f33925a29617d6762e05fa8ad3a78c39e9407aa3abb0e4cc223da95295a2f3ef08778e17f1f77
   languageName: node
   linkType: hard
 

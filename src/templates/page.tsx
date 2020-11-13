@@ -25,6 +25,7 @@ const Page: FC<PageProps> = ({ data }) => {
       <Container
         sx={{
           maxWidth: "ms",
+          fontFamily: "body",
         }}
       >
         <MDXRenderer>{data.mdx.body}</MDXRenderer>
