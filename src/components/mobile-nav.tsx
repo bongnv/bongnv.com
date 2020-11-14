@@ -7,16 +7,15 @@ import ThemeSwitcher from "./theme-switcher";
 import NavLink from "./nav-link";
 
 /** @jsx jsx */
-import { jsx, Box } from "theme-ui";
+import { jsx, Flex } from "theme-ui";
 
 const MobileNav: FC = () => {
   const { links } = useSiteMetadata();
 
   return (
-    <Box
+    <Flex
       as="nav"
       sx={{
-        display: "flex",
         flexDirection: "column",
         paddingX: 3,
         borderBottom: "1px solid",
@@ -29,7 +28,7 @@ const MobileNav: FC = () => {
       <NavLink to="/blog/" mobile>
         Blog
       </NavLink>
-      <Box
+      <Flex
         sx={{
           borderTop: "1px solid",
           borderTopColor: "muted",
@@ -48,8 +47,8 @@ const MobileNav: FC = () => {
           <Mail />
         </NavIcon>
         <ThemeSwitcher />
-      </Box>
-    </Box>
+      </Flex>
+    </Flex>
   );
 };
 

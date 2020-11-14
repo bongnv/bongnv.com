@@ -7,7 +7,7 @@ import MenuBtn from "./menu-btn";
 import MobileNav from "./mobile-nav";
 
 /** @jsx jsx */
-import { jsx, Box, Container } from "theme-ui";
+import { jsx, Box, Container, Flex } from "theme-ui";
 
 const Header: FC = () => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -45,12 +45,11 @@ const Header: FC = () => {
           paddingX: 3,
         }}
       >
-        <Box
+        <Flex
           sx={{
             borderBottom: "1px solid",
-            borderBottomColor: "muted",
+            borderColor: "muted",
             paddingY: 2,
-            display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
           }}
@@ -68,7 +67,7 @@ const Header: FC = () => {
           </Link>
           <Nav />
           <MenuBtn closed={!menuVisible} onClick={onMenuClick} />
-        </Box>
+        </Flex>
       </Container>
       {menuVisible && <MobileNav />}
     </Box>

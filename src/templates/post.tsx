@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { Container } from "theme-ui";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import TOC from "../components/toc";
+import PostMeta from "../components/post-meta";
 
 /** @jsx jsx */
-import { jsx, Box, Styled } from "theme-ui";
+import { jsx, Box, Flex, Styled } from "theme-ui";
 
 interface PageProps {
   data: {
@@ -16,8 +16,10 @@ interface PageProps {
       excerpt: string;
       frontmatter: {
         title: string;
+        date: string;
       };
       body: string;
+      timeToRead: number;
       tableOfContents: {
         items: Array<{
           url: string;
@@ -40,9 +42,8 @@ const Page: FC<PageProps> = ({ data }) => {
   return (
     <Layout>
       <SEO title={post.frontmatter.title} description={post.excerpt} />
-      <Container
+      <Flex
         sx={{
-          display: "flex",
           justifyContent: "center",
         }}
       >
@@ -54,15 +55,30 @@ const Page: FC<PageProps> = ({ data }) => {
             }}
           />
         )}
-        <Container
+        <Box
+          as="main"
           sx={{
             maxWidth: "ms",
             fontFamily: "body",
           }}
         >
-          <Styled.h1>{post.frontmatter.title}</Styled.h1>
-          <MDXRenderer>{post.body}</MDXRenderer>
-        </Container>
+          <Styled.h1
+            sx={{
+              marginBottom: 3,
+            }}
+          >
+            {post.frontmatter.title}
+          </Styled.h1>
+          <PostMeta date={post.frontmatter.date} timeToRead={post.timeToRead} />
+          <Box
+            as="article"
+            sx={{
+              marginTop: 4,
+            }}
+          >
+            <MDXRenderer>{post.body}</MDXRenderer>
+          </Box>
+        </Box>
         {showTOC && (
           <Box
             as="aside"
@@ -74,7 +90,7 @@ const Page: FC<PageProps> = ({ data }) => {
             <TOC items={headings} />
           </Box>
         )}
-      </Container>
+      </Flex>
     </Layout>
   );
 };
@@ -86,7 +102,9 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         title
+        date(formatString: "DD MMMM YYYY")
       }
+      timeToRead
       body
       excerpt
       tableOfContents(maxDepth: 3)

@@ -25,6 +25,7 @@ const Page: FC<PageProps> = ({ data }) => {
     <Layout>
       <SEO title={data.mdx.frontmatter.title} />
       <Container
+        as="main"
         sx={{
           maxWidth: "ms",
           fontFamily: "body",

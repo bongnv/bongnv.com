@@ -28,6 +28,16 @@ const theme: Theme = merge(base, {
     screenWidth: "100vw",
   },
   breakpoints: ["640px", "1280px"],
+  textStyles: {
+    ...swiss.textStyles,
+    subtitle: {
+      color: "text",
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
+      fontSize: 1,
+    },
+  },
 });
 
 console.log("Theme", theme);

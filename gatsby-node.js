@@ -65,8 +65,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
-  console.log("Pages", result.data.pages.edges);
-  console.log("Posts", result.data.posts.edges);
   console.log("TagsGroup", result.data.tagsGroup.edges);
 
   buildPages({

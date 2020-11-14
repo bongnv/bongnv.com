@@ -98,7 +98,6 @@ const TOC: FC<TOCProps> = ({ items }) => {
     handleTOC(newHeadings, setActiveAnchor);
   }, [items]);
 
-  console.log("activeAnchor", activeAnchor, headings);
   return (
     <Box
       sx={{
@@ -106,7 +105,7 @@ const TOC: FC<TOCProps> = ({ items }) => {
         top: 5,
         fontFamily: "heading",
         borderLeft: "1px solid",
-        borderBlockColor: "muted",
+        borderColor: "muted",
         paddingLeft: 3,
         paddingY: 3,
         marginTop: 6,
@@ -120,7 +119,7 @@ const TOC: FC<TOCProps> = ({ items }) => {
           marginY: 0,
         }}
       >
-        {headings.map((header, index) => (
+        {headings.map((header) => (
           <Styled.li
             key={header.id}
             sx={{

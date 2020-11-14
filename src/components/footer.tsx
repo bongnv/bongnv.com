@@ -13,7 +13,7 @@ const Footer: FC = () => {
       as="footer"
       sx={{
         borderTop: "1px solid",
-        borderTopColor: "muted",
+        borderColor: "muted",
         paddingY: 3,
       }}
     >
