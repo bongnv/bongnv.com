@@ -28,6 +28,10 @@ const theme: Theme = merge(base, {
     screenWidth: "100vw",
   },
   breakpoints: ["640px", "1280px"],
+  fontWeights: {
+    ...swiss.fontWeights,
+    display: 700,
+  },
   textStyles: {
     ...swiss.textStyles,
     subtitle: {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, FC } from "react";
+import { Link } from "gatsby";
 
 import getFirstHeading from "../utils/get-first-heading";
 
@@ -127,8 +128,8 @@ const TOC: FC<TOCProps> = ({ items }) => {
               paddingLeft: header.depth > 1 ? 3 : 0,
             }}
           >
-            <Styled.a
-              href={header.url}
+            <Link
+              to={header.url}
               sx={{
                 color: "text",
                 textDecoration: "none",
@@ -140,7 +141,7 @@ const TOC: FC<TOCProps> = ({ items }) => {
               }}
             >
               {header.title}
-            </Styled.a>
+            </Link>
           </Styled.li>
         ))}
       </Styled.ul>
