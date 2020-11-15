@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 
 import PostMeta from "./post-meta";
 
@@ -28,14 +29,14 @@ const PostItem: React.FC<PostItemProps> = ({
       marginBottom: 4,
     }}
   >
-    <Styled.a
+    <Link
       sx={{
         variant: "textStyles.postItemTitle",
       }}
-      href={slug}
+      to={slug}
     >
       {title}
-    </Styled.a>
+    </Link>
     <PostMeta date={date} timeToRead={timeToRead} />
     <Styled.p
       sx={{
@@ -44,9 +45,14 @@ const PostItem: React.FC<PostItemProps> = ({
     >
       <span>{description}</span>
       <span> </span>
-      <Styled.a href={slug}>
+      <Link
+        sx={{
+          variant: "styles.a",
+        }}
+        to={slug}
+      >
         <span>[Read more]</span>
-      </Styled.a>
+      </Link>
     </Styled.p>
     <Styled.p
       sx={{

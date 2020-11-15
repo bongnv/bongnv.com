@@ -106,6 +106,9 @@ const theme = {
       color: "text",
       textDecoration: "none",
       variant: "textStyles.heading",
+      "&:hover": {
+        color: "secondary",
+      },
     },
   },
   buttons: {

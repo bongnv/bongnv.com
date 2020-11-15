@@ -1,15 +1,14 @@
-import React, { FC } from "react";
-import { graphql } from "gatsby";
+import React from "react";
+import { Link, graphql } from "gatsby";
 
-// import PostList from "../components/post-list";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
 import PostItem from "../components/post-item";
 
-import { Styled } from "theme-ui";
+/** @jsx jsx */
+import { jsx, Flex, Styled } from "theme-ui";
 
-interface BlogIndexPageProps {
+interface IndexPageProps {
   data: {
     allMdx: {
       edges: Array<{
@@ -31,16 +30,39 @@ interface BlogIndexPageProps {
   };
 }
 
-const BlogIndexPage: FC<BlogIndexPageProps> = ({
-  data,
-}: BlogIndexPageProps) => {
-  const title = "Blog";
+const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const edges = data.allMdx.edges;
 
   return (
     <Layout>
-      <SEO title={title} />
-      <Styled.h1>{title}</Styled.h1>
+      <SEO title="Hi" />
+      <Styled.h1>Hi.</Styled.h1>
+      <Styled.p>
+        I&#39;m Bong - currently I work at Grab as a lead software engineer. My
+        focus is on distributed systems in{" "}
+        <Styled.a href="https://golang.org/">Golang</Styled.a>. I&#39;m also
+        interested in frontend technologies like building my personal one. In
+        general, I like to write codes and to solve problems.
+      </Styled.p>
+      <Flex
+        sx={{
+          marginTop: 5,
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Styled.h2>Latest Posts</Styled.h2>
+        <Link
+          sx={{
+            variant: "styles.a",
+            color: "text",
+            textDecoration: "none",
+          }}
+          to="/blog/"
+        >
+          <span>Read all posts</span>
+        </Link>
+      </Flex>
       {edges.map(({ node }) => (
         <PostItem
           key={node.id}
@@ -56,14 +78,14 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   );
 };
 
-export default BlogIndexPage;
+export default IndexPage;
 
 export const pageQuery = graphql`
   query {
     allMdx(
       filter: { fields: { sourceInstanceName: { eq: "posts" } } }
       sort: { order: DESC, fields: [frontmatter___date] }
-      limit: 2000
+      limit: 3
     ) {
       edges {
         node {
