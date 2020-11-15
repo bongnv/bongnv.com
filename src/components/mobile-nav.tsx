@@ -16,7 +16,7 @@ const MobileNav: FC = () => (
     }}
   >
     <Link
-      to="/"
+      to="/about/"
       sx={{
         variant: "textStyles.navLink",
         marginBottom: 3,
