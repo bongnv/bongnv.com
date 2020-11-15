@@ -83,7 +83,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         }
       }
       posts: allMdx(
-        filter: { fields: { sourceInstanceName: { eq: "posts" } } }
+        filter: {
+          fields: {
+            sourceInstanceName: { eq: "posts" }
+            isPublished: { eq: true }
+          }
+        }
         sort: { order: DESC, fields: [frontmatter___date] }
         limit: 2000
       ) {
