@@ -1,16 +1,27 @@
 import React, { FC } from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import PostMeta from "../components/post-meta";
 import TagsMeta from "../components/tags-meta";
+import StyledLink from "../components/styled-link";
 
 /** @jsx jsx */
 import { jsx, Box, Styled } from "theme-ui";
 
-interface PageProps {
+interface PostProps {
+  pageContext: {
+    next: {
+      title: string;
+      slug: string;
+    };
+    prev: {
+      title: string;
+      slug: string;
+    };
+  };
   data: {
     mdx: {
       excerpt: string;
@@ -25,7 +36,7 @@ interface PageProps {
   };
 }
 
-const Page: FC<PageProps> = ({ data }) => {
+const Post: FC<PostProps> = ({ data, pageContext: { next, prev } }) => {
   const post = data.mdx;
   const tags = post.frontmatter.tags;
 
@@ -54,12 +65,32 @@ const Page: FC<PageProps> = ({ data }) => {
         }}
       >
         {tags && <TagsMeta tags={tags} />}
+        {prev && (
+          <Styled.p
+            sx={{
+              fontSize: 1,
+              marginY: 1,
+            }}
+          >
+            Previous: <StyledLink to={prev.slug}>{prev.title}</StyledLink>
+          </Styled.p>
+        )}
+        {next && (
+          <Styled.p
+            sx={{
+              fontSize: 1,
+              marginY: 1,
+            }}
+          >
+            Next: <StyledLink to={next.slug}>{next.title}</StyledLink>
+          </Styled.p>
+        )}
       </Box>
     </Layout>
   );
 };
 
-export default Page;
+export default Post;
 
 export const pageQuery = graphql`
   query($id: String!) {

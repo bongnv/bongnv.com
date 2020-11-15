@@ -6,13 +6,43 @@
 const path = require("path");
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
-const buildPages = ({ edges, createPage, template }) => {
-  edges.forEach((edge) => {
+const buildPages = ({ edges, createPage }) => {
+  const template = path.resolve("src/templates/page.tsx");
+  edges.forEach(({ node }) => {
     createPage({
-      path: edge.node.fields.slug,
+      path: node.fields.slug,
       component: template,
       context: {
-        id: edge.node.id,
+        id: node.id,
+      },
+    });
+  });
+};
+
+const buildPosts = ({ edges, createPage }) => {
+  const template = path.resolve("src/templates/post.tsx");
+  edges.forEach(({ node }, i) => {
+    const next =
+      i === 0
+        ? null
+        : {
+            slug: edges[i - 1].node.fields.slug,
+            title: edges[i - 1].node.frontmatter.title,
+          };
+    const prev =
+      i === edges.length - 1
+        ? null
+        : {
+            slug: edges[i + 1].node.fields.slug,
+            title: edges[i + 1].node.frontmatter.title,
+          };
+    createPage({
+      path: node.fields.slug,
+      component: template,
+      context: {
+        id: node.id,
+        prev,
+        next,
       },
     });
   });
@@ -63,6 +93,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             fields {
               slug
             }
+            frontmatter {
+              title
+            }
           }
         }
       }
@@ -82,13 +115,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   buildPages({
     createPage,
     edges: result.data.pages.edges,
-    template: path.resolve("src/templates/page.tsx"),
   });
 
-  buildPages({
+  buildPosts({
     createPage,
     edges: result.data.posts.edges,
-    template: path.resolve("src/templates/post.tsx"),
   });
 
   buildTagPages({

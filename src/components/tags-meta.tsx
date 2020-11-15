@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "gatsby";
+
+import StyledLink from "./styled-link";
 
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
@@ -9,16 +10,7 @@ interface StyledTagProps {
 }
 
 const StyledTag: React.FC<StyledTagProps> = ({ tag }) => {
-  return (
-    <Link
-      sx={{
-        variant: "styles.a",
-      }}
-      to={`/tags/${tag}/`}
-    >
-      {tag}
-    </Link>
-  );
+  return <StyledLink to={`/tags/${tag}/`}>{tag}</StyledLink>;
 };
 
 interface TagsMetaProps {
@@ -29,6 +21,7 @@ const TagsMeta: React.FC<TagsMetaProps> = ({ tags = [] }) => (
   <Styled.p
     sx={{
       fontSize: 1,
+      marginY: 1,
     }}
   >
     <span>Tagged With: </span>

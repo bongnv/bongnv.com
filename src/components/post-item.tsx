@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 
 import PostMeta from "./post-meta";
 import TagsMeta from "./tags-meta";
+import StyledLink from "./styled-link";
 
 /** @jsx jsx */
 import { jsx, Box, Styled } from "theme-ui";
@@ -44,16 +45,8 @@ const PostItem: React.FC<PostItemProps> = ({
         marginTop: 3,
       }}
     >
-      <span>{description}</span>
-      <span> </span>
-      <Link
-        sx={{
-          variant: "styles.a",
-        }}
-        to={slug}
-      >
-        <span>[Read more]</span>
-      </Link>
+      <span>{description} </span>
+      <StyledLink to={slug}>[Read more]</StyledLink>
     </Styled.p>
     {tags && <TagsMeta tags={tags} />}
   </Box>
