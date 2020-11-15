@@ -18,6 +18,20 @@ const buildPages = ({ edges, createPage, template }) => {
   });
 };
 
+const buildTagPages = ({ tags, createPage }) => {
+  const tagTemplate = path.resolve("src/templates/tag.tsx");
+
+  tags.forEach((tag) => {
+    createPage({
+      path: `/tags/${tag.fieldValue}/`,
+      component: tagTemplate,
+      context: {
+        tag: tag.fieldValue,
+      },
+    });
+  });
+};
+
 // You can delete this file if you're not using it
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
@@ -65,8 +79,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
-  console.log("TagsGroup", result.data.tagsGroup.edges);
-
   buildPages({
     createPage,
     edges: result.data.pages.edges,
@@ -77,6 +89,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     createPage,
     edges: result.data.posts.edges,
     template: path.resolve("src/templates/post.tsx"),
+  });
+
+  buildTagPages({
+    createPage,
+    tags: result.data.tagsGroup.group,
   });
 };
 

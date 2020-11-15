@@ -15,6 +15,23 @@ interface PostItemProps {
   tags?: Array<string>;
 }
 
+interface StyledTagProps {
+  tag: string;
+}
+
+const StyledTag: React.FC<StyledTagProps> = ({ tag }) => {
+  return (
+    <Link
+      sx={{
+        variant: "styles.a",
+      }}
+      to={`/tags/${tag}/`}
+    >
+      {tag}
+    </Link>
+  );
+};
+
 const PostItem: React.FC<PostItemProps> = ({
   title,
   date,
@@ -60,7 +77,11 @@ const PostItem: React.FC<PostItemProps> = ({
       }}
     >
       <span>Tagged With: </span>
-      <span>{tags.join(", ")}</span>
+      <span>
+        {tags
+          .map<React.ReactNode>((tag) => <StyledTag key={tag} tag={tag} />)
+          .reduce((prev, curr) => [prev, ", ", curr])}
+      </span>
     </Styled.p>
   </Box>
 );

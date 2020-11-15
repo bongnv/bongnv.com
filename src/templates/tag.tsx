@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
@@ -7,7 +7,10 @@ import PostItem from "../components/post-item";
 
 import { Styled } from "theme-ui";
 
-interface BlogIndexPageProps {
+interface TagPageProps {
+  pageContext: {
+    tag: string;
+  };
   data: {
     allMdx: {
       edges: Array<{
@@ -29,10 +32,8 @@ interface BlogIndexPageProps {
   };
 }
 
-const BlogIndexPage: FC<BlogIndexPageProps> = ({
-  data,
-}: BlogIndexPageProps) => {
-  const title = "Blog";
+const TagPage: React.FC<TagPageProps> = ({ pageContext, data }) => {
+  const title = pageContext.tag;
   const edges = data.allMdx.edges;
 
   return (
@@ -54,19 +55,16 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   );
 };
 
-export default BlogIndexPage;
+export default TagPage;
 
 export const pageQuery = graphql`
-  query {
+  query($tag: String) {
     allMdx(
       filter: {
-        fields: {
-          sourceInstanceName: { eq: "posts" }
-          isPublished: { eq: true }
-        }
+        fields: { isPublished: { eq: true } }
+        frontmatter: { tags: { in: [$tag] } }
       }
-      sort: { order: DESC, fields: [frontmatter___date] }
-      limit: 2000
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
