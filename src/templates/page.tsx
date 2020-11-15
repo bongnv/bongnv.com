@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { Container } from "theme-ui";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, Box, Styled } from "theme-ui";
 
 interface PageProps {
   data: {
@@ -21,18 +20,14 @@ interface PageProps {
 }
 
 const Page: FC<PageProps> = ({ data }) => {
+  const post = data.mdx;
   return (
     <Layout>
-      <SEO title={data.mdx.frontmatter.title} />
-      <Container
-        as="main"
-        sx={{
-          maxWidth: "ms",
-          fontFamily: "body",
-        }}
-      >
-        <MDXRenderer>{data.mdx.body}</MDXRenderer>
-      </Container>
+      <SEO title={post.frontmatter.title} />
+      <Styled.h1>{post.frontmatter.title}</Styled.h1>
+      <Box as="article">
+        <MDXRenderer>{post.body}</MDXRenderer>
+      </Box>
     </Layout>
   );
 };

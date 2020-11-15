@@ -23,6 +23,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     >
       <Header />
       <Box
+        as="main"
         sx={{
           paddingTop: [4, 5],
         }}
