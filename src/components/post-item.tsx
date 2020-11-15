@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 
 import PostMeta from "./post-meta";
+import TagsMeta from "./tags-meta";
 
 /** @jsx jsx */
 import { jsx, Box, Styled } from "theme-ui";
@@ -14,23 +15,6 @@ interface PostItemProps {
   slug: string;
   tags?: Array<string>;
 }
-
-interface StyledTagProps {
-  tag: string;
-}
-
-const StyledTag: React.FC<StyledTagProps> = ({ tag }) => {
-  return (
-    <Link
-      sx={{
-        variant: "styles.a",
-      }}
-      to={`/tags/${tag}/`}
-    >
-      {tag}
-    </Link>
-  );
-};
 
 const PostItem: React.FC<PostItemProps> = ({
   title,
@@ -71,20 +55,7 @@ const PostItem: React.FC<PostItemProps> = ({
         <span>[Read more]</span>
       </Link>
     </Styled.p>
-    {tags && (
-      <Styled.p
-        sx={{
-          fontSize: 1,
-        }}
-      >
-        <span>Tagged With: </span>
-        <span>
-          {tags
-            .map<React.ReactNode>((tag) => <StyledTag key={tag} tag={tag} />)
-            .reduce((prev, curr) => [prev, ", ", curr])}
-        </span>
-      </Styled.p>
-    )}
+    {tags && <TagsMeta tags={tags} />}
   </Box>
 );
 

@@ -1,10 +1,11 @@
 import React, { FC } from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import PostMeta from "../components/post-meta";
+import TagsMeta from "../components/tags-meta";
 
 /** @jsx jsx */
 import { jsx, Box, Styled } from "theme-ui";
@@ -16,6 +17,7 @@ interface PageProps {
       frontmatter: {
         title: string;
         date: string;
+        tags: Array<string>;
       };
       body: string;
       timeToRead: number;
@@ -25,6 +27,7 @@ interface PageProps {
 
 const Page: FC<PageProps> = ({ data }) => {
   const post = data.mdx;
+  const tags = post.frontmatter.tags;
 
   return (
     <Layout>
@@ -40,10 +43,17 @@ const Page: FC<PageProps> = ({ data }) => {
       <Box
         as="section"
         sx={{
-          marginTop: 4,
+          marginY: [4, 5],
         }}
       >
         <MDXRenderer>{post.body}</MDXRenderer>
+      </Box>
+      <Box
+        sx={{
+          marginY: [4, 5],
+        }}
+      >
+        {tags && <TagsMeta tags={tags} />}
       </Box>
     </Layout>
   );
@@ -57,6 +67,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "DD MMMM YYYY")
+        tags
       }
       timeToRead
       body
