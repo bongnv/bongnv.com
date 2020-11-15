@@ -1,7 +1,7 @@
 ---
 title: Blogging with VuePress
 date: 2020-04-21
-description: This article guides you not only how to create your blog but also how to continuously deploy with Github Actions. Even you are completely new to static site generators, it is very easy to get started with.
+excerpt: This article guides you not only how to create your blog but also how to continuously deploy with Github Actions. Even you are completely new to static site generators, it is very easy to get started with.
 published: true
 tags: ["vue", "vuepress"]
 ---

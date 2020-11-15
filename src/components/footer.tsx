@@ -18,9 +18,16 @@ const Footer: FC = () => {
         paddingTop: 3,
         justifyContent: "space-between",
         alignItems: "center",
-        flexDirection: ["column", "row"],
+        flexDirection: ["column-reverse", "row"],
       }}
     >
+      <Styled.p
+        sx={{
+          margin: 0,
+        }}
+      >
+        {author} © 2016 - {new Date().getFullYear()}
+      </Styled.p>
       <Box>
         <Styled.a
           href={links.linkedin}
@@ -49,13 +56,6 @@ const Footer: FC = () => {
           <Mail />
         </Styled.a>
       </Box>
-      <Styled.p
-        sx={{
-          margin: 0,
-        }}
-      >
-        {author} © 2016 - {new Date().getFullYear()}
-      </Styled.p>
     </Flex>
   );
 };

@@ -28,8 +28,7 @@ Here is an example of the release type that will be done based on commit message
 
 ### Automated tests
 
-We all want our modules to be released with its best in quality. The only way to achieve that is to take testing seriously. Since releasing is done automatically, so be testing.
-Therefore, I would assume the CI is already implemented with proper automated testing. And we will only trigger the release step if all test cases are passed.
+We all want our modules to be released with its best in quality. The only way to achieve that is to take testing seriously. Since releasing is done automatically, so be testing. Therefore, I would assume the CI is already implemented with proper automated testing. And we will only trigger the release step if all test cases are passed.
 
 ## Setup semantic-release
 

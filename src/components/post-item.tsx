@@ -71,18 +71,20 @@ const PostItem: React.FC<PostItemProps> = ({
         <span>[Read more]</span>
       </Link>
     </Styled.p>
-    <Styled.p
-      sx={{
-        fontSize: 1,
-      }}
-    >
-      <span>Tagged With: </span>
-      <span>
-        {tags
-          .map<React.ReactNode>((tag) => <StyledTag key={tag} tag={tag} />)
-          .reduce((prev, curr) => [prev, ", ", curr])}
-      </span>
-    </Styled.p>
+    {tags && (
+      <Styled.p
+        sx={{
+          fontSize: 1,
+        }}
+      >
+        <span>Tagged With: </span>
+        <span>
+          {tags
+            .map<React.ReactNode>((tag) => <StyledTag key={tag} tag={tag} />)
+            .reduce((prev, curr) => [prev, ", ", curr])}
+        </span>
+      </Styled.p>
+    )}
   </Box>
 );
 
