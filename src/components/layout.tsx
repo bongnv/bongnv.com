@@ -4,7 +4,7 @@ import Footer from "./footer";
 import Header from "./header";
 
 /** @jsx jsx */
-import { jsx, Flex } from "theme-ui";
+import { jsx, Box, Flex } from "theme-ui";
 
 interface LayoutProps {
   children: ReactNode;
@@ -12,23 +12,30 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <>
+    <Flex
+      sx={{
+        minHeight: "screenHeight",
+        maxWidth: "lg",
+        padding: [3, 4],
+        marginX: "auto",
+        flexDirection: "column",
+      }}
+    >
       <Header />
-      <Flex
+      <Box
         sx={{
-          maxWidth: "xl",
-          minHeight: "screenHeight",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          paddingTop: [5, 6],
-          paddingX: 3,
-          marginX: "auto",
+          paddingTop: [4, 5],
         }}
       >
         {children}
-        <Footer />
-      </Flex>
-    </>
+      </Box>
+      <div
+        sx={{
+          flexGrow: 1,
+        }}
+      />
+      <Footer />
+    </Flex>
   );
 };
 

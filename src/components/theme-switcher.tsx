@@ -13,16 +13,9 @@ const ThemeSwitcher: FC = () => {
 
   return (
     <IconButton
-      size={24}
       onClick={onClick}
       sx={{
-        padding: "0px",
-        "&:focus": {
-          outline: "none",
-        },
-        "&:hover": {
-          color: "secondary",
-        },
+        variant: "buttons.navIcon",
       }}
     >
       {colorMode === "default" ? <Sun /> : <Moon />}

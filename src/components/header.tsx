@@ -1,17 +1,19 @@
 import React, { FC, useState, useEffect } from "react";
 import { Link } from "gatsby";
+import { Menu, X } from "react-feather";
 
 import { useSiteMetadata } from "../hooks/use-site-metadata";
-import Nav from "./nav";
-import MenuBtn from "./menu-btn";
 import MobileNav from "./mobile-nav";
+import ThemeSwitcher from "./theme-switcher";
+import Nav from "./nav";
 
 /** @jsx jsx */
-import { jsx, Box, Container, Flex } from "theme-ui";
+import { jsx, Box, Flex, IconButton } from "theme-ui";
 
 const Header: FC = () => {
-  const [menuVisible, setMenuVisible] = useState(false);
   const { title } = useSiteMetadata();
+
+  const [menuVisible, setMenuVisible] = useState(false);
   const onMenuClick = () => setMenuVisible(!menuVisible);
 
   useEffect(() => {
@@ -31,44 +33,47 @@ const Header: FC = () => {
     <Box
       as="header"
       sx={{
-        position: "fixed",
-        top: 0,
-        zIndex: 5,
-        width: "screenWidth",
-        backgroundColor: "background",
-        fontFamily: "heading",
+        marginBottom: 3,
       }}
     >
-      <Container
+      <Flex
         sx={{
-          maxWidth: "xl",
-          paddingX: 3,
+          paddingBottom: 3,
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        <Flex
+        <IconButton
+          title="Menu"
+          aria-label="Toggle Menu"
           sx={{
-            borderBottom: "1px solid",
-            borderColor: "muted",
-            paddingY: 2,
-            justifyContent: "space-between",
-            alignItems: "center",
+            marginRight: 3,
+            variant: "buttons.navIcon",
+            display: ["block", "none"],
           }}
+          onClick={onMenuClick}
         >
-          <Link
-            sx={{
-              fontSize: [3, 4],
-              textDecoration: "none",
-              fontWeight: "heading",
-              color: "text",
-            }}
-            to="/"
-          >
-            {title}
-          </Link>
-          <Nav />
-          <MenuBtn closed={!menuVisible} onClick={onMenuClick} />
-        </Flex>
-      </Container>
+          {menuVisible ? <X /> : <Menu />}
+        </IconButton>
+        <Link
+          sx={{
+            fontSize: [3, 4],
+            textDecoration: "none",
+            fontWeight: "heading",
+            color: "text",
+          }}
+          to="/"
+        >
+          <span>{title}</span>
+        </Link>
+        <Box
+          sx={{
+            flexGrow: 1,
+          }}
+        />
+        <Nav />
+        <ThemeSwitcher />
+      </Flex>
       {menuVisible && <MobileNav />}
     </Box>
   );
