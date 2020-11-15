@@ -101,6 +101,12 @@ const theme = {
         color: "secondary",
       },
     },
+    postItemTitle: {
+      fontSize: 3,
+      color: "text",
+      textDecoration: "none",
+      variant: "textStyles.heading",
+    },
   },
   buttons: {
     navIcon: {

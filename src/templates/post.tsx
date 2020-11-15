@@ -38,7 +38,7 @@ const Page: FC<PageProps> = ({ data }) => {
       </Styled.h1>
       <PostMeta date={post.frontmatter.date} timeToRead={post.timeToRead} />
       <Box
-        as="article"
+        as="section"
         sx={{
           marginTop: 4,
         }}

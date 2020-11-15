@@ -25,7 +25,7 @@ const Page: FC<PageProps> = ({ data }) => {
     <Layout>
       <SEO title={post.frontmatter.title} />
       <Styled.h1>{post.frontmatter.title}</Styled.h1>
-      <Box as="article">
+      <Box as="section">
         <MDXRenderer>{post.body}</MDXRenderer>
       </Box>
     </Layout>

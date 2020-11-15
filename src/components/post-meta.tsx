@@ -11,6 +11,7 @@ interface PostMetaProps {
 const PostMeta: FC<PostMetaProps> = ({ date, timeToRead }: PostMetaProps) => (
   <Styled.p
     sx={{
+      marginTop: 1,
       variant: "textStyles.subtitle",
     }}
   >
