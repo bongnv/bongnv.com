@@ -30,6 +30,8 @@ const Footer: FC = () => {
       </Styled.p>
       <Box>
         <Styled.a
+          target="_blank"
+          rel="noopener noreferrer"
           href={links.linkedin}
           sx={{
             marginRight: 3,
@@ -39,6 +41,8 @@ const Footer: FC = () => {
           <Linkedin />
         </Styled.a>
         <Styled.a
+          target="_blank"
+          rel="noopener noreferrer"
           href={links.github}
           sx={{
             marginRight: 3,
