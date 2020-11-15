@@ -46,12 +46,27 @@ module.exports = {
             },
           },
           "gatsby-remark-copy-linked-files",
+          {
+            resolve: "gatsby-remark-external-links",
+            options: {
+              target: "_blank",
+              rel: "noopener noreferrer",
+            },
+          },
         ],
       },
     },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-theme-ui",
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: "UA-11696168-2",
+      },
+    },
+    "gatsby-plugin-sitemap",
     // {
     //   resolve: "gatsby-plugin-manifest",
     //   options: {
