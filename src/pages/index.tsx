@@ -41,8 +41,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         I&#39;m Bong - currently I work at Grab as a lead software engineer. My
         focus is on distributed systems in{" "}
         <Styled.a href="https://golang.org/">Golang</Styled.a>. I&#39;m also
-        interested in frontend technologies like building my personal one. In
-        general, I like to write codes and to solve problems.
+        interested in frontend technologies like building my personal website.
       </Styled.p>
       <Flex
         sx={{
