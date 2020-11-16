@@ -4,10 +4,16 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import PostItem from "../components/post-item";
+import StyledLink from "../components/styled-link";
 
-import { Styled } from "theme-ui";
+/** @jsx jsx */
+import { jsx, Grid, Styled } from "theme-ui";
 
 interface BlogIndexPageProps {
+  pageContext: {
+    prev?: string;
+    next?: string;
+  };
   data: {
     allMdx: {
       edges: Array<{
@@ -30,6 +36,7 @@ interface BlogIndexPageProps {
 }
 
 const BlogIndexPage: FC<BlogIndexPageProps> = ({
+  pageContext: { prev, next },
   data,
 }: BlogIndexPageProps) => {
   const title = "Blog";
@@ -50,6 +57,23 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
           tags={node.frontmatter.tags}
         />
       ))}
+      <Grid
+        sx={{
+          marginY: [4, 5],
+          gridTemplateColumns: "1fr 1fr",
+        }}
+      >
+        <Styled.p>
+          {prev && <StyledLink to={prev}>Older Posts</StyledLink>}
+        </Styled.p>
+        <Styled.p
+          sx={{
+            textAlign: "right",
+          }}
+        >
+          {next && <StyledLink to={next}>Newer Posts</StyledLink>}
+        </Styled.p>
+      </Grid>
     </Layout>
   );
 };
@@ -57,7 +81,7 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
 export default BlogIndexPage;
 
 export const pageQuery = graphql`
-  query {
+  query($skip: Int!, $limit: Int!) {
     allMdx(
       filter: {
         fields: {
@@ -66,7 +90,8 @@ export const pageQuery = graphql`
         }
       }
       sort: { order: DESC, fields: [frontmatter___date] }
-      limit: 2000
+      limit: $limit
+      skip: $skip
     ) {
       edges {
         node {

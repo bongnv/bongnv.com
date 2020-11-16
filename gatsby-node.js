@@ -5,6 +5,7 @@
  */
 const path = require("path");
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const PAGE_SIZE = 5;
 
 const buildPages = ({ edges, createPage }) => {
   const template = path.resolve("src/templates/page.tsx");
@@ -62,6 +63,23 @@ const buildTagPages = ({ tags, createPage }) => {
   });
 };
 
+const buildPaginatedPages = ({ createPage, totalCount, prefix, template }) => {
+  const numPages = Math.ceil(totalCount / PAGE_SIZE);
+  const getPath = (page) => (page === 1 ? `${prefix}` : `${prefix}${page}`);
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: getPath(i + 1),
+      component: template,
+      context: {
+        limit: PAGE_SIZE,
+        skip: i * PAGE_SIZE,
+        next: i === 0 ? null : getPath(i),
+        prev: i == numPages - 1 ? null : getPath(i + 2),
+      },
+    });
+  });
+};
+
 // You can delete this file if you're not using it
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
@@ -103,6 +121,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             }
           }
         }
+        totalCount
       }
       tagsGroup: allMdx(limit: 2000) {
         group(field: frontmatter___tags) {
@@ -130,6 +149,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   buildTagPages({
     createPage,
     tags: result.data.tagsGroup.group,
+  });
+
+  buildPaginatedPages({
+    createPage,
+    totalCount: result.data.posts.totalCount,
+    prefix: "/blog/",
+    template: path.resolve("src/templates/blog.tsx"),
   });
 };
 
