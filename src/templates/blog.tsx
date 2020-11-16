@@ -7,12 +7,12 @@ import PostItem from "../components/post-item";
 import StyledLink from "../components/styled-link";
 
 /** @jsx jsx */
-import { jsx, Grid, Styled } from "theme-ui";
+import { jsx, Box, Flex, Styled } from "theme-ui";
 
 interface BlogIndexPageProps {
   pageContext: {
-    prev?: string;
-    next?: string;
+    prevSlug?: string;
+    nextSlug?: string;
   };
   data: {
     allMdx: {
@@ -36,7 +36,7 @@ interface BlogIndexPageProps {
 }
 
 const BlogIndexPage: FC<BlogIndexPageProps> = ({
-  pageContext: { prev, next },
+  pageContext: { prevSlug, nextSlug },
   data,
 }: BlogIndexPageProps) => {
   const title = "Blog";
@@ -45,7 +45,13 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   return (
     <Layout>
       <SEO title={title} />
-      <Styled.h1>{title}</Styled.h1>
+      <Styled.h1
+        sx={{
+          marginBottom: 4,
+        }}
+      >
+        {title}
+      </Styled.h1>
       {edges.map(({ node }) => (
         <PostItem
           key={node.id}
@@ -57,23 +63,19 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
           tags={node.frontmatter.tags}
         />
       ))}
-      <Grid
+      <Flex
         sx={{
-          marginY: [4, 5],
-          gridTemplateColumns: "1fr 1fr",
+          marginY: 4,
+          justifyContent: "space-between",
         }}
       >
-        <Styled.p>
-          {prev && <StyledLink to={prev}>Older Posts</StyledLink>}
-        </Styled.p>
-        <Styled.p
-          sx={{
-            textAlign: "right",
-          }}
-        >
-          {next && <StyledLink to={next}>Newer Posts</StyledLink>}
-        </Styled.p>
-      </Grid>
+        <Box>
+          {prevSlug && <StyledLink to={prevSlug}>Older Posts</StyledLink>}
+        </Box>
+        <Box>
+          {nextSlug && <StyledLink to={nextSlug}>Newer Posts</StyledLink>}
+        </Box>
+      </Flex>
     </Layout>
   );
 };

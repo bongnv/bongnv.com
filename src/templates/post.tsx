@@ -54,14 +54,14 @@ const Post: FC<PostProps> = ({ data, pageContext: { next, prev } }) => {
       <Box
         as="section"
         sx={{
-          marginY: [4, 5],
+          marginY: 4,
         }}
       >
         <MDXRenderer>{post.body}</MDXRenderer>
       </Box>
       <Box
         sx={{
-          marginY: [4, 5],
+          marginY: 4,
         }}
       >
         {tags && <TagsMeta tags={tags} />}

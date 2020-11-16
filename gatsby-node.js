@@ -73,8 +73,8 @@ const buildPaginatedPages = ({ createPage, totalCount, prefix, template }) => {
       context: {
         limit: PAGE_SIZE,
         skip: i * PAGE_SIZE,
-        next: i === 0 ? null : getPath(i),
-        prev: i == numPages - 1 ? null : getPath(i + 2),
+        nextSlug: i === 0 ? null : getPath(i),
+        prevSlug: i == numPages - 1 ? null : getPath(i + 2),
       },
     });
   });
