@@ -1,5 +1,5 @@
 ---
-title: Buying ADA (Cardano) in Singapore
+title: Buying ADA(Cardano) in Singapore
 date: 2020-12-29
 tags: ["cardano", "ada", "cryptocurrency"]
 excerpt: In order to take the first step into the Cardano world, you will need to buy some ADA. Unfortunately, buying ADA in Singapore is not as straight forward as can be. In this post, I explain one of the easiest/cheapest methods of buying ADA in Singapore.
