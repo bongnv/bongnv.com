@@ -18,7 +18,7 @@ Once you’ve signed up, you will need to verify the account in order to see the
 
 Next, you need to deposit in order to buy ADA. I choose P2P trading option to buy some USDT via SGD because it's fast with lower transaction fee. From my experience, a transaction usually takes 5-15 minutes. I choose USDT over BTC as there are more P2P sellers and the fee is also lower.
 
-As you will pay directly to the bank account/PayNow of the seller, it's better choose those who have the highest number of completed orders for safety. It's also wise to make sure the seller is online before proceeding to the transfer.
+As you will pay directly to the bank account/PayNow of the seller, it's better to choose those who are verified abd have the highest number of completed orders for safety. It's also wise to make sure the seller is online before proceeding to the transfer.
 
 After having USDT, you need to transfer it to Spot Wallet in order to trade for ADA.
 
