@@ -1,8 +1,8 @@
 ---
-title: Prepare for system design interviews.
+title: Prepare for system design interviews
 date: 2021-02-11
 tags: ["interview", "system-design"]
-excerpt: Many people are afraid of system design interviews as there's normally no certain pattern to prepare for and the question is open-ended, unpredictable, and quite flexible. Therefore, there's usually no standard or correct answer which makes the preparation process even harder. This blog will cover how you prepare for system design interviews and what interviewers expect from you.
+excerpt: Many people are afraid of system design interviews as there's normally no certain pattern to prepare for and the question is open-ended, unpredictable, and quite flexible. Therefore, there's usually no standard or correct answer which makes the preparation process even harder. This post will cover how you prepare for system design interviews and what interviewers expect from you.
 published: true
 ---
 
