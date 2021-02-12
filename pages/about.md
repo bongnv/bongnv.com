@@ -11,4 +11,4 @@ My focus is on distributed systems in [Go](https://golang.org/) programing langu
 
 And, here is my wife & me:
 
-![Profile picture](./profile.png)
+![Profile picture](./profile.jpg)
