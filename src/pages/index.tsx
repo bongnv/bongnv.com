@@ -45,7 +45,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           rel="noopener noreferrer"
           href="https://golang.org/"
         >
-          Golang
+          Go
         </Styled.a>
         , I&#39;m also interested in frontend technologies like building my
         personal website.

@@ -10,7 +10,7 @@ In order to take the first step into the Cardano world, you will need to buy som
 
 ## Opening account in Binance
 
-First, you need to open an account with Binance. By using [this invitation link](https://www.binance.com/en/register?ref=HSOZWQV6), it will give me some BNB as commission.
+First, you need to open an account with Binance. I would recommend to use [this invitation link](https://www.binance.com/en/register?ref=HSOZWQV6), it will give you and me 10% of transaction fee each as commission.
 
 Once you’ve signed up, you will need to verify the account in order to see the P2P trading option. As it's automated, the process is quite fast. It only took me a couple of minutes. After your account is verified, the next step is to buy some USDT.
 
