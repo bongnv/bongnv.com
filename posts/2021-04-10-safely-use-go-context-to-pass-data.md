@@ -45,7 +45,7 @@ Another compromise when using Go context is the missing of type information. Go 
 
 One approach that I usually use is to implement a wrapper library to inject and retrieve data from context. First, it will centralize all pieces of information that we may expect from context. Secondly, it allows us to enforce what data should be injected and expected from context. Take requestID as an example, I would implement a wrapper like below:
 
-```
+```go
 package contextutil
 
 type ctxKey int
