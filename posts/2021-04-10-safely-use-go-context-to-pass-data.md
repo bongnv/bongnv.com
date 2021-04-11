@@ -6,7 +6,7 @@ excerpt: Go context is an excellent and controversial feature. It's handy to pas
 published: true
 ---
 
-Go context is an effective way to pass request-scoped data to like requestID, authenticated users, locale information or logger. Instead of having a complex list of parameters in a function, we can use context.Context to pass data and then to simplify the function. Below is a function with and without using context to pass data.
+Go context is an effective way to pass request-scoped data like requestID, authenticated users, locale information or logger. Instead of having a complex list of parameters in a function, we can use context.Context to pass data and then to simplify the function. Below is a function with and without using context to pass data.
 ```go
 // the function must take all request-scoped data.
 func handlerLogic(w http.ResponseWriter, r *http.Request, requestID string, *user *User, locale string, logger Logger) {
@@ -26,7 +26,7 @@ func handlerLogic(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-With `context.Context`, function signature becomes simpler and consistent. We, therefore, can easily write a middleware to add functionality which is much harder before. Below is an example of a middleware to inject requestID into the context:
+With `context.Context`, function signature becomes simpler and consistent. Not only is it easier to read, we can also write middlewares to add more functionalities. Below is an example of a middleware to inject requestID into the context:
 
 ```go
 func addRequestID(next http.Handler) http.Handler {
