@@ -11,8 +11,6 @@ const MobileNav: FC = () => (
       flexDirection: "column",
       paddingX: 3,
       paddingBottom: 3,
-      borderBottom: "1px solid",
-      borderColor: "muted",
     }}
   >
     <Link
