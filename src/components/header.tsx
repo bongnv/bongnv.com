@@ -1,8 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
-import { Link } from "gatsby";
 import { Menu, X } from "react-feather";
 
-import { useSiteMetadata } from "../hooks/use-site-metadata";
 import MobileNav from "./mobile-nav";
 import ThemeSwitcher from "./theme-switcher";
 import Nav from "./nav";
@@ -11,8 +9,6 @@ import Nav from "./nav";
 import { jsx, Box, Flex, IconButton } from "theme-ui";
 
 const Header: FC = () => {
-  const { title } = useSiteMetadata();
-
   const [menuVisible, setMenuVisible] = useState(false);
   const onMenuClick = () => setMenuVisible(!menuVisible);
 
@@ -34,11 +30,13 @@ const Header: FC = () => {
       as="header"
       sx={{
         marginBottom: 3,
+        paddingBottom: 2,
+        borderBottom: "1px solid",
+        borderColor: "muted",
       }}
     >
       <Flex
         sx={{
-          paddingBottom: 3,
           justifyContent: "space-between",
           alignItems: "center",
         }}
@@ -55,23 +53,12 @@ const Header: FC = () => {
         >
           {menuVisible ? <X /> : <Menu />}
         </IconButton>
-        <Link
-          sx={{
-            fontSize: [3, 4],
-            textDecoration: "none",
-            fontWeight: "heading",
-            color: "text",
-          }}
-          to="/"
-        >
-          <span>{title}</span>
-        </Link>
+        <Nav />
         <Box
           sx={{
             flexGrow: 1,
           }}
         />
-        <Nav />
         <ThemeSwitcher />
       </Flex>
       {menuVisible && <MobileNav />}

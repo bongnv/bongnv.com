@@ -38,8 +38,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <SEO title="Hi" />
       <Styled.h1>Hi.</Styled.h1>
       <Styled.p>
-        I&#39;m Bong - currently I work at Grab as a lead software engineer. Although my
-        focus is on distributed systems in{" "}
+        I&#39;m Bong - currently I work at Grab as a lead software engineer.
+        Although my focus is on distributed systems in{" "}
         <Styled.a
           target="_blank"
           rel="noopener noreferrer"

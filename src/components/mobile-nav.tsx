@@ -16,21 +16,30 @@ const MobileNav: FC = () => (
     }}
   >
     <Link
-      to="/about/"
+      to="/"
       sx={{
         variant: "textStyles.navLink",
         marginBottom: 3,
       }}
     >
-      <span>About</span>
+      <span>Home</span>
     </Link>
     <Link
       to="/blog/"
       sx={{
         variant: "textStyles.navLink",
+        marginBottom: 3,
       }}
     >
       <span>Blog</span>
+    </Link>
+    <Link
+      to="/about/"
+      sx={{
+        variant: "textStyles.navLink",
+      }}
+    >
+      <span>About</span>
     </Link>
   </Flex>
 );
