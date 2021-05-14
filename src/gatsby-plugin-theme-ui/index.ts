@@ -1,8 +1,7 @@
 const theme = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
-    body:
-      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
@@ -126,9 +125,10 @@ const theme = {
       color: "gray",
     },
     ".comment": { fontStyle: "italic" },
-    ".property,.tag,.boolean,.number,.constant,.symbol,.deleted,.function,.class-name,.regex,.important,.variable": {
-      color: "purple",
-    },
+    ".property,.tag,.boolean,.number,.constant,.symbol,.deleted,.function,.class-name,.regex,.important,.variable":
+      {
+        color: "purple",
+      },
     ".atrule,.attr-value,.keyword": { color: "primary" },
     ".selector,.attr-name,.string,.char,.builtin,.inserted": {
       color: "secondary",

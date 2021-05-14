@@ -83,7 +83,7 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
 export default BlogIndexPage;
 
 export const pageQuery = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query ($skip: Int!, $limit: Int!) {
     allMdx(
       filter: {
         fields: {

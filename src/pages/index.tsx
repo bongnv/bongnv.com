@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import PostItem from "../components/post-item";
+import Introduction from "../components/introduction.md";
 
 /** @jsx jsx */
 import { jsx, Flex, Styled } from "theme-ui";
@@ -36,20 +37,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   return (
     <Layout>
       <SEO title="Hi" />
-      <Styled.h1>Hi.</Styled.h1>
-      <Styled.p>
-        I&#39;m Bong - currently I work at Grab as a lead software engineer.
-        Although my focus is on distributed systems in{" "}
-        <Styled.a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://golang.org/"
-        >
-          Go
-        </Styled.a>
-        , I&#39;m also interested in frontend technologies like building my
-        personal website.
-      </Styled.p>
+      <Introduction />
       <Flex
         sx={{
           marginTop: 5,
