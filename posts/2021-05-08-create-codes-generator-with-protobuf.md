@@ -1,18 +1,20 @@
 ---
 title: Create a code generator with protoc
 date: 2021-05-08
-tags: ["go", "golang", "protoc", "protobuf", "code-generator", "protocol-buffer"]
-excerpt: If your system happens to have a microservices architecture, you may find it repetitive to scaffold new services or to add new endpoints. In such scenarios, protobuf emerges to be an excellent choice for writing API contracts and generating code. However, you sometimes may want to add a custom code and it's actually quite simple with protoc though. In this post, we will walk through how to create a code generate with protoc.
-published: false
+tags:
+  ["go", "golang", "protoc", "protobuf", "code-generator", "protocol-buffer"]
+excerpt: If your system happens to have a microservices architecture, you may find it repetitive to scaffold new services or to add new endpoints. In such scenarios, Protocol Buffer emerges to be an excellent choice for writing API contracts and generating code. However, you sometimes may want to add a custom code but you're not sure how to to that. Actually, it's quite simple with `protoc` though. In this post, we will walk through how to create a code generator with protoc.
+published: true
 ---
 
-If your system happens to have a microservices architecture, you may find it repetitive to scaffold new services or to add new endpoints. In such scenarios, [`Protocol Buffer`](https://developers.google.com/protocol-buffers/) emerges to be an excellent choice for writing API contracts and generating code. However, you sometimes may want to add a custom code and it's actually quite simple with `protoc` though. In this post, we will walk through how to create a code generate with protoc.
+If your system happens to have a microservices architecture, you may find it repetitive to scaffold new services or to add new endpoints. In such scenarios, [`Protocol Buffer`](https://developers.google.com/protocol-buffers/) emerges to be an excellent choice for writing API contracts and generating code. However, you sometimes may want to add a custom code but you're not sure how to to that. Actually, it's quite simple with `protoc` though. In this post, we will walk through how to create a code generator with protoc.
 
 ## Getting started
 
-Before getting started, make sure you have [Go](https://golang.org/doc/install) environment ready. It's also important to be familiar with [Google protobuf](https://developers.google.com/protocol-buffers/). I highly recommend to run through the [Go tutorial](https://developers.google.com/protocol-buffers/docs/gotutorial) to generates Go code for any given protocol definition if you're new to the stuff.
+Before getting started, make sure you have [Go](https://golang.org/doc/install) environment ready. It's also important to be familiar with [Google protobuf](https://developers.google.com/protocol-buffers/). I highly recommend running through the [Go tutorial](https://developers.google.com/protocol-buffers/docs/gotutorial) to generate Go code for any given protocol definition if you're new to the stuff.
 
-While running through the tutorial, you may notice that we need install `protoc-gen-go` in order generate Go code. Yep, `protoc-gen-go` is a plugin of the `protoc` command written by Google and you can check out [its source code](https://github.com/golang/protobuf/blob/master/protoc-gen-go/main.go). In this guide, we will write a similar program called `protoc-gen-my-plugin` to generate custom code. The command to execute `protoc-gen-go` is like below:
+While running through the tutorial, you may notice that we need install `protoc-gen-go` in order to generate Go code. Yep, `protoc-gen-go` is a plugin of the `protoc` command written by Google and you can check out [its source code](https://github.com/golang/protobuf/blob/master/protoc-gen-go/main.go). In this guide, we will write a similar program called `protoc-gen-my-plugin` to generate custom code. As the command to execute `protoc-gen-go` is like below:
+
 ```shell
 protoc --proto_path=. --go_out=. --go_opt=paths=source_relative foo.proto
 ```
@@ -22,9 +24,11 @@ The command to execute our plugin will be like:
 ```shell
 protoc --proto_path=. --my-plugin_out=. --my-plugin_opt=paths=source_relative foo.proto
 ```
-In the above command, `my-plugin_out` specifies the output directory of the generated files and it also tells `protoc` to use `protoc-gen-my-plugin` to generate the custom code. `my-plugin_opt` specifies the option for running the plugin. 
 
-Okay, let's write a simple program to test it. I simply use these commands to set up a new Go project:
+In the above command, `my-plugin_out` specifies the output directory of the generated files and it also tells `protoc` to use `protoc-gen-my-plugin` to generate the custom code. `my-plugin_opt` specifies the option for running the plugin.
+
+Okay, let's write a simple program to test it. At first, I simply use these commands to set up a new Go project:
+
 ```shell
 mkdir protoc-gen-my-plugin
 cd protoc-gen-my-plugin
@@ -32,7 +36,7 @@ go mod init github.com/bongnv/protoc-gen-my-plugin
 export PATH=$PATH:"$(pwd)" # so protoc can find our plugin
 ```
 
-Next, create simple `main.go` to just print a log:
+Next, create a simple `main.go` to just print a log:
 
 ```go
 package main
@@ -53,7 +57,9 @@ syntax = "proto3";
 
 message Foo {}
 ```
+
 After all, we can try our plugin and the log should be printed like below:
+
 ```shell
 % go build && protoc --proto_path=. --my-plugin_out=. --my-plugin_opt=paths=source_relative foo.proto
 
@@ -62,12 +68,77 @@ After all, we can try our plugin and the log should be printed like below:
 
 ## Write logic to generate code
 
-Now, `protoc` can find our plugin and execute it. We then can start to write logic to generate code.
+As `protoc` can find our plugin and execute it, now we need to write logic to generate code. It could be a `New` method for each message to create a new instance of that message to be used as a factory function. The generated code would look simple like below:
 
-create folder, project
+```go
+// New creates a new instance of Foo.
+func (Foo) New() *Foo {
+	return &Foo{}
+}
+```
 
-write code to setup
+By implementation, `protoc` communicates with our plugin via `stdin` and `stdout`. However, `protogen.Options` already abstracts that logic so we can just use it to simplify the code by providing a callback function:
 
-command to run
+```go
+func main() {
+	log.Println("protoc-gen-my-plugin is called")
+	protogen.Options{}.Run(func(plugin *protogen.Plugin) error {
+		for _, file := range plugin.Files {
+			if !file.Generate {
+				continue
+			}
 
-summarize
+			if err := generateFile(plugin, file); err != nil {
+				return err
+			}
+		}
+
+		return nil
+	})
+}
+```
+
+The callback function will take `*protogen.Plugin` as an input that should contain all necessary information to generate code. In the above example, I skip all proto files that don't require code generation and I call `generateFile` to generate a source file given a parsed proto file.
+
+Let's look at the function `generateFile`:
+
+```go
+func generateFile(p *protogen.Plugin, f *protogen.File) error {
+	// Skip generating file if there is no message.
+	if len(f.Messages) == 0 {
+		return nil
+	}
+
+	filename := f.GeneratedFilenamePrefix + "_my_plugin.pb.go"
+	g := p.NewGeneratedFile(filename, f.GoImportPath)
+	g.P("// Code generated by protoc-gen-my-plugin. DO NOT EDIT.")
+	g.P()
+	g.P("package ", f.GoPackageName)
+	g.P()
+
+	// generate factory functions
+	for _, m := range f.Messages {
+		msgName := m.GoIdent.GoName
+		g.P("// New creates a new instance of ", msgName, ".")
+		g.P("func (", msgName, ") New() *", msgName, " {")
+		g.P("return &", msgName, "{}")
+		g.P("}")
+	}
+
+	return nil
+}
+```
+
+We can use `f.Messages` to retrieve the list of parsed messages from the proto file or `f.Services` for the list of parsed services.
+
+## Summary
+
+Writing a protoc plugin isn't as complex as it sounds. With the help of `protogen.Options` and `protogen.Plugin` we can easily access the parsed information of proto files. And from that, we should be able to generate codes to improve the productivity of the development.
+
+From my experience, it could be handy to scaffold a service including both gRPC and HTTP. It could be used to generate validator code, data entity or DAO to interact with the storage layer.
+
+### References:
+
+- The code used in this post: https://github.com/bongnv/protoc-gen-my-plugin
+- The source code of `protoc-gen-go`: https://github.com/golang/protobuf/tree/master/protoc-gen-go
+- The source code of `protoc-gen-go-grpc`: https://github.com/grpc/grpc-go/tree/master/cmd/protoc-gen-go-grpc
