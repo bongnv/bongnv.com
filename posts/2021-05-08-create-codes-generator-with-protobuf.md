@@ -129,7 +129,7 @@ func generateFile(p *protogen.Plugin, f *protogen.File) error {
 }
 ```
 
-We can use `f.Messages` to retrieve the list of parsed messages from the proto file or `f.Services` for the list of parsed services.
+I use `f.Messages` to retrieve the list of parsed messages from the proto file. We can also use `f.Services` for the list of parsed services if we need to scaffold a service. `NewGeneratedFile` here is used to create a new generated file and `g.P` is used to add a new line into the file. Check their API, there are lots of useful stuff.
 
 ## Summary
 
