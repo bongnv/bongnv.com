@@ -58,7 +58,7 @@ const TagPage: React.FC<TagPageProps> = ({ pageContext, data }) => {
 export default TagPage;
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query ($tag: String) {
     allMdx(
       filter: {
         fields: { isPublished: { eq: true } }

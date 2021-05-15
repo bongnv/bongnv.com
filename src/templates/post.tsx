@@ -93,7 +93,7 @@ const Post: FC<PostProps> = ({ data, pageContext: { next, prev } }) => {
 export default Post;
 
 export const pageQuery = graphql`
-  query($id: String!) {
+  query ($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title

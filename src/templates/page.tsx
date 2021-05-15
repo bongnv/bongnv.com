@@ -40,7 +40,7 @@ const Page: FC<PageProps> = ({ data }) => {
 export default Page;
 
 export const pageQuery = graphql`
-  query($id: String!) {
+  query ($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title

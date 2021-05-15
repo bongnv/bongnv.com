@@ -13,3 +13,8 @@ declare module "@theme-ui/preset-base" {
 
   export = preset;
 }
+
+declare module "*.md" {
+  const value: any;
+  export default value;
+}
