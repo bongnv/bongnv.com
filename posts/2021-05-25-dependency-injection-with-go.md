@@ -20,7 +20,17 @@ In this particular context, dependency injection is a technique in which the dep
 
 ## Why should we use dependency injection?
 
-- inversion of control
-- separation of concerns
+Dependency injection basically implements [the dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle). Therefore, it allows to decouple modules or a high-level modules should not depend on low-level modules, instead both should depend on abstractions (in Go, it's interfaces).
+
+- Modules are replacable and they can be replaced with mocks in order to improve Unit testing.
+- The application becomes more flexible as each module can be replaced, extended or upgraded easily.
+- Because modules are loose coupling, they can be developed in parallel hence to improve the development velocity.
+
+In Go, proper dependency injection can help to stucture codes much better. Firstly, dependencies are clearly organized and defined by contracts and global variables are avoided as dependencies are now injected instead. Secondly, it also means better modularisation and the code itself becomes easier to understand or to read.
 
 ## How to implement in Go?
+
+However, implementing dependency injection isn't simple. Without the help of a good library, the work can be manual and error-prone. Luckily there are some good libraries out there:
+
+- [dip](https://github.com/uber-go/dig): Only supports to identify dependencies by types. As a result, there is a high chance of conflicts.
+- [wire](https://github.com/google/wire):
