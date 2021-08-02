@@ -3,7 +3,7 @@ title: Dependency injection with Go
 date: 2021-05-25
 tags: ["go", "golang", "dependency-injection", "dependency-inversion"]
 excerpt: One of the advantages of using Go is that programmers can quickly onboard and start writing code. And I've seen a colleague who was able to read Go code in the first day and submit code change for review in the third day. Because the language is simple and straightforward, Go programmers can start writing production code without much knowledge about OOP or design patterns like dependency injection. In this post, we'll discuss the importance of dependency injection and how to apply it in Go effectively.
-published: false
+published: true
 ---
 
 One of the advantages of using Go is that programmers can quickly onboard and start writing code. And I've seen a colleague who was able to read Go code in the first day and submit code change for review in the third day. Because the language is simple and straightforward, Go programmers can start writing production code without much knowledge about OOP or design patterns like dependency injection. In this post, we'll discuss the importance of dependency injection and how to apply it in Go effectively.
@@ -30,7 +30,69 @@ In Go, proper dependency injection can help to stucture codes much better. First
 
 ## How to implement in Go?
 
-However, implementing dependency injection isn't simple. Without the help of a good library, the work can be manual and error-prone. Luckily there are some good libraries out there:
+However, manually injecting dependencies injection isn't clean and could be verbose. Without the help of a good library, the work can be manual and error-prone. Luckily there are some good libraries out there:
 
 - [dip](https://github.com/uber-go/dig): Only supports to identify dependencies by types. As a result, there is a high chance of conflicts.
-- [wire](https://github.com/google/wire):
+- [wire](https://github.com/google/wire): Supprots dependency injection by generating code automatically. It's an interesting approach but still there is a huge amount of code generated which could be hard to review.
+
+Considering writing an injector isn't difficult. I also wrote my own [`injector`](https://github.com/bongnv/injector). It uses struct tags to indicate injection and then the library will use `reflect` to inject the dependencies.
+
+```go
+// ServiceAImpl is the example of an implementation.
+type ServiceAImpl struct {}
+
+// ServiceBImpl is another example of implementation that need to be injected.
+type ServiceBImpl struct {
+	// Here you can notice that ServiceBImpl requests a dependency with the type of *ServiceAImpl.
+	ServiceA *ServiceAImpl `injector:"auto"`
+}
+
+func yourInitFunc() {
+  i := injector.New()
+
+  // add ServiceAImpl to the injector
+  i.Component(&ServiceAImpl{})
+
+  // create an instance of ServiceBImpl and inject its dependencies
+  b := &ServiceBImpl{}
+  i.Component(b)
+}
+```
+
+It also allows initializing a dependency by functions and factories:
+
+```go
+// ServiceA has Logger as a dependency
+type ServiceA struct {
+  Logger Logger `injector:"logger"`
+}
+
+func newServiceA() (*ServiceA, error) {
+  // init your serviceA here
+}
+
+type ServiceB struct {
+  Logger Logger `injector:"logger"`
+}
+
+// Create creates a new instance of ServiceA
+func (f ServiceBFactory) Create() (interface{}, error) {
+  // logic to create A via Config
+  return &ServiceB{}, nil
+}
+
+// init func
+func yourInitFunc() {
+  i := injector.New()
+  i.Component("logger", Logger{}),
+  // serviceA will be created and registered, logger will also be injected
+  i.ComponentFromFunc(newServiceA),
+
+  // Create ServiceB via Factory, dependencies will be injected.
+  i.ComponentFromFactory(&ServiceBFactory{})
+}
+```
+
+## To sum up
+
+Usually, if the service is small, it maybe not worth to approach a library for dependency injection but you should always keep it in mind and always starting with the pattern. Otherwise, it will become a mess when the service scales to next level. It will be also easy to migrate if needs to.
