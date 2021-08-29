@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useRef, useState, useEffect } from "react";
 import { Menu, X } from "react-feather";
 
 import MobileNav from "./mobile-nav";
@@ -11,10 +11,16 @@ import { jsx, Box, Flex, IconButton } from "theme-ui";
 const Header: FC = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const onMenuClick = () => setMenuVisible(!menuVisible);
+  const ref = useRef(null);
 
   useEffect(() => {
     if (menuVisible) {
-      const eventHandler = (): void => setMenuVisible(false);
+      const eventHandler = (e: Event): void => {
+        if (!ref || !ref.current || !ref.current.contains(e.target)) {
+          setMenuVisible(false);
+        }
+      };
+
       window.addEventListener("click", eventHandler);
       window.addEventListener("scroll", eventHandler);
 
@@ -34,6 +40,7 @@ const Header: FC = () => {
         borderBottom: "1px solid",
         borderColor: "muted",
       }}
+      ref={ref}
     >
       <Flex
         sx={{
