@@ -1,3 +1,3 @@
 # Hi.
 
-I'm Bong - currently I work at Grab as a lead software engineer. Although my focus is on distributed systems in [Go](https://golang.org/), I'm also interested in frontend technologies like building my personal website.
+I'm Bong - currently I work at [SafetyCulture](https://safetyculture.com/) as a senior software engineer. Although my focus is on distributed systems with [Go](https://golang.org/), I also spend some time in frontend stuffs like building my personal website.

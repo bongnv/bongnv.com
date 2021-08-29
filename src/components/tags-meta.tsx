@@ -24,7 +24,7 @@ const TagsMeta: React.FC<TagsMetaProps> = ({ tags = [] }) => (
       marginY: 1,
     }}
   >
-    <span>Tagged With: </span>
+    <span>Tagged with: </span>
     <span>
       {tags
         .map<React.ReactNode>((tag) => <StyledTag key={tag} tag={tag} />)
