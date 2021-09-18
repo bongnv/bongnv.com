@@ -7,7 +7,7 @@ import PostItem from "../components/post-item";
 import Introduction from "../components/introduction.md";
 
 /** @jsx jsx */
-import { jsx, Flex, Styled } from "theme-ui";
+import { jsx, Flex, Themed } from "theme-ui";
 
 interface IndexPageProps {
   data: {
@@ -45,7 +45,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           alignItems: "center",
         }}
       >
-        <Styled.h2>Latest Posts</Styled.h2>
+        <Themed.h2>Latest Posts</Themed.h2>
         <Link
           sx={{
             variant: "styles.a",

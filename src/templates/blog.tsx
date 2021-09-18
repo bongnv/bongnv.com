@@ -7,7 +7,7 @@ import PostItem from "../components/post-item";
 import StyledLink from "../components/styled-link";
 
 /** @jsx jsx */
-import { jsx, Box, Flex, Styled } from "theme-ui";
+import { jsx, Box, Flex, Themed } from "theme-ui";
 
 interface BlogIndexPageProps {
   pageContext: {
@@ -45,13 +45,13 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   return (
     <Layout>
       <SEO title={title} />
-      <Styled.h1
+      <Themed.h1
         sx={{
           marginBottom: 4,
         }}
       >
         {title}
-      </Styled.h1>
+      </Themed.h1>
       {edges.map(({ node }) => (
         <PostItem
           key={node.id}

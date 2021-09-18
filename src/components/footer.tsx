@@ -4,7 +4,7 @@ import { Linkedin, GitHub, Mail } from "react-feather";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 /** @jsx jsx */
-import { jsx, Box, Flex, Styled } from "theme-ui";
+import { jsx, Box, Flex, Themed } from "theme-ui";
 
 const Footer: FC = () => {
   const { author, links } = useSiteMetadata();
@@ -21,15 +21,15 @@ const Footer: FC = () => {
         flexDirection: ["column-reverse", "row"],
       }}
     >
-      <Styled.p
+      <Themed.p
         sx={{
           margin: 0,
         }}
       >
         {author} © 2016 - {new Date().getFullYear()}
-      </Styled.p>
+      </Themed.p>
       <Box>
-        <Styled.a
+        <Themed.a
           target="_blank"
           rel="noopener noreferrer"
           href={links.linkedin}
@@ -39,8 +39,8 @@ const Footer: FC = () => {
           }}
         >
           <Linkedin />
-        </Styled.a>
-        <Styled.a
+        </Themed.a>
+        <Themed.a
           target="_blank"
           rel="noopener noreferrer"
           href={links.github}
@@ -50,15 +50,15 @@ const Footer: FC = () => {
           }}
         >
           <GitHub />
-        </Styled.a>
-        <Styled.a
+        </Themed.a>
+        <Themed.a
           href={links.email}
           sx={{
             variant: "textStyles.navLink",
           }}
         >
           <Mail />
-        </Styled.a>
+        </Themed.a>
       </Box>
     </Flex>
   );

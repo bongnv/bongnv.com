@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import getFirstHeading from "../utils/get-first-heading";
 
 /** @jsx jsx */
-import { jsx, Box, Styled } from "theme-ui";
+import { jsx, Box, Themed } from "theme-ui";
 
 const WAITING_IN_MS = 100;
 
@@ -113,7 +113,7 @@ const TOC: FC<TOCProps> = ({ items }) => {
         marginLeft: 3,
       }}
     >
-      <Styled.ul
+      <Themed.ul
         sx={{
           color: "text",
           padding: 0,
@@ -121,7 +121,7 @@ const TOC: FC<TOCProps> = ({ items }) => {
         }}
       >
         {headings.map((header) => (
-          <Styled.li
+          <Themed.li
             key={header.id}
             sx={{
               listStyleType: "none",
@@ -142,9 +142,9 @@ const TOC: FC<TOCProps> = ({ items }) => {
             >
               {header.title}
             </Link>
-          </Styled.li>
+          </Themed.li>
         ))}
-      </Styled.ul>
+      </Themed.ul>
     </Box>
   );
 };

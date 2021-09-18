@@ -3,7 +3,7 @@ import React from "react";
 import StyledLink from "./styled-link";
 
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Themed } from "theme-ui";
 
 interface StyledTagProps {
   tag: string;
@@ -18,7 +18,7 @@ interface TagsMetaProps {
 }
 
 const TagsMeta: React.FC<TagsMetaProps> = ({ tags = [] }) => (
-  <Styled.p
+  <Themed.p
     sx={{
       fontSize: 1,
       marginY: 1,
@@ -30,7 +30,7 @@ const TagsMeta: React.FC<TagsMetaProps> = ({ tags = [] }) => (
         .map<React.ReactNode>((tag) => <StyledTag key={tag} tag={tag} />)
         .reduce((prev, curr) => [prev, ", ", curr])}
     </span>
-  </Styled.p>
+  </Themed.p>
 );
 
 export default TagsMeta;

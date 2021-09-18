@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import PostItem from "../components/post-item";
 
-import { Styled } from "theme-ui";
+import { Themed } from "theme-ui";
 
 interface TagPageProps {
   pageContext: {
@@ -39,7 +39,7 @@ const TagPage: React.FC<TagPageProps> = ({ pageContext, data }) => {
   return (
     <Layout>
       <SEO title={title} />
-      <Styled.h1>{title}</Styled.h1>
+      <Themed.h1>{title}</Themed.h1>
       {edges.map(({ node }) => (
         <PostItem
           key={node.id}

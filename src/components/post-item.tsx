@@ -6,7 +6,7 @@ import TagsMeta from "./tags-meta";
 import StyledLink from "./styled-link";
 
 /** @jsx jsx */
-import { jsx, Box, Styled } from "theme-ui";
+import { jsx, Box, Themed } from "theme-ui";
 
 interface PostItemProps {
   title: string;
@@ -40,14 +40,14 @@ const PostItem: React.FC<PostItemProps> = ({
       {title}
     </Link>
     <PostMeta date={date} timeToRead={timeToRead} />
-    <Styled.p
+    <Themed.p
       sx={{
         marginTop: 3,
       }}
     >
       <span>{description} </span>
       <StyledLink to={slug}>[Read more]</StyledLink>
-    </Styled.p>
+    </Themed.p>
     {tags && <TagsMeta tags={tags} />}
   </Box>
 );

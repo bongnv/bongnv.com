@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 /** @jsx jsx */
-import { jsx, Box, Styled } from "theme-ui";
+import { jsx, Box, Themed } from "theme-ui";
 
 interface PageProps {
   data: {
@@ -24,7 +24,7 @@ const Page: FC<PageProps> = ({ data }) => {
   return (
     <Layout>
       <SEO title={post.frontmatter.title} />
-      <Styled.h1>{post.frontmatter.title}</Styled.h1>
+      <Themed.h1>{post.frontmatter.title}</Themed.h1>
       <Box
         as="section"
         sx={{

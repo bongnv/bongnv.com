@@ -9,7 +9,7 @@ import TagsMeta from "../components/tags-meta";
 import StyledLink from "../components/styled-link";
 
 /** @jsx jsx */
-import { jsx, Box, Styled } from "theme-ui";
+import { jsx, Box, Themed } from "theme-ui";
 
 interface PostProps {
   pageContext: {
@@ -43,13 +43,13 @@ const Post: FC<PostProps> = ({ data, pageContext: { next, prev } }) => {
   return (
     <Layout>
       <SEO title={post.frontmatter.title} description={post.excerpt} />
-      <Styled.h1
+      <Themed.h1
         sx={{
           marginBottom: 3,
         }}
       >
         {post.frontmatter.title}
-      </Styled.h1>
+      </Themed.h1>
       <PostMeta date={post.frontmatter.date} timeToRead={post.timeToRead} />
       <Box
         as="section"
@@ -66,24 +66,24 @@ const Post: FC<PostProps> = ({ data, pageContext: { next, prev } }) => {
       >
         {tags && <TagsMeta tags={tags} />}
         {prev && (
-          <Styled.p
+          <Themed.p
             sx={{
               fontSize: 1,
               marginY: 1,
             }}
           >
             Previous: <StyledLink to={prev.slug}>{prev.title}</StyledLink>
-          </Styled.p>
+          </Themed.p>
         )}
         {next && (
-          <Styled.p
+          <Themed.p
             sx={{
               fontSize: 1,
               marginY: 1,
             }}
           >
             Next: <StyledLink to={next.slug}>{next.title}</StyledLink>
-          </Styled.p>
+          </Themed.p>
         )}
       </Box>
     </Layout>

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Themed } from "theme-ui";
 
 interface PostMetaProps {
   date: string;
@@ -9,15 +9,15 @@ interface PostMetaProps {
 }
 
 const PostMeta: FC<PostMetaProps> = ({ date, timeToRead }: PostMetaProps) => (
-  <Styled.p
+  <Themed.p
     sx={{
       marginTop: 1,
       variant: "textStyles.subtitle",
     }}
   >
     {`Posted on ${date} - `}
-    <Styled.strong>{timeToRead} min read</Styled.strong>
-  </Styled.p>
+    <Themed.strong>{timeToRead} min read</Themed.strong>
+  </Themed.p>
 );
 
 export default PostMeta;
