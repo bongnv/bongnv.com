@@ -1,77 +1,47 @@
 {
-  "name": "bongnv.com",
+  "name": "bongnv-com",
+  "version": "0.0.0",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
+  },
   "dependencies": {
-    "@emotion/react": "^11.8.2",
-    "@mapbox/rehype-prism": "^0.8.0",
-    "@mdx-js/mdx": "^1.6.22",
-    "@mdx-js/react": "^1.6.22",
-    "gatsby": "^4.11.1",
-    "gatsby-image": "^3.11.0",
-    "gatsby-plugin-google-analytics": "^4.11.0",
-    "gatsby-plugin-mdx": "^3.11.1",
-    "gatsby-plugin-offline": "^5.11.1",
-    "gatsby-plugin-react-helmet": "^5.11.0",
-    "gatsby-plugin-sharp": "^4.11.1",
-    "gatsby-plugin-sitemap": "^5.11.1",
-    "gatsby-plugin-theme-ui": "^0.14.2",
-    "gatsby-plugin-typescript": "^4.11.1",
-    "gatsby-remark-copy-linked-files": "^5.11.0",
-    "gatsby-remark-external-links": "^0.0.4",
-    "gatsby-remark-images": "^6.11.1",
-    "gatsby-source-filesystem": "^4.11.1",
-    "gatsby-transformer-sharp": "^4.11.0",
-    "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-feather": "^2.0.9",
-    "react-helmet": "^6.1.0",
-    "rehype-slug": "^4.0.1",
-    "theme-ui": "^0.14.2"
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/react": "^17.0.43",
-    "@types/react-helmet": "^6.1.5",
-    "@types/theme-ui": "^0.3.7",
-    "@typescript-eslint/eslint-plugin": "^5.17.0",
-    "@typescript-eslint/parser": "^5.17.0",
-    "babel-preset-gatsby": "^2.11.1",
-    "eslint": "^8.12.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.29.4",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.7",
-    "npm-check-updates": "^12.5.5",
-    "prettier": "^2.6.1",
-    "typescript": "^4.6.3"
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/tsconfig": "3.7.0",
+    "@docusaurus/types": "3.7.0",
+    "typescript": "~5.6.2"
   },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "0BSD",
-  "scripts": {
-    "build": "gatsby build",
-    "clean": "gatsby clean",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix --cache",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "type-check": "tsc --noEmit",
-    "lint-staged": "lint-staged",
-    "prepare": "husky install",
-    "upgrade-deps": "ncu -u"
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "engines": {
+    "node": ">=18.0"
   }
 }
