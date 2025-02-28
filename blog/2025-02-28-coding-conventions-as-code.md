@@ -1,7 +1,7 @@
 ---
 title: Coding Convention as Code with ArchUnit
 date: 2025-02-28
-description: Explore how to automate coding conventions using ArchUnit in Java projects. This blog explains how to set up ArchUnit, define architectural rules, and overcome common challenges, ensuring a cleaner, more consistent codebase.
+description: Explore how to automate coding conventions using ArchUnit in Java projects. This blog explains how to set up ArchUnit, define coding conventions, and overcome common challenges, ensuring a cleaner, more consistent codebase.
 ---
 ## Why Conventions Matter
 
@@ -17,15 +17,15 @@ Coding Convention as Code transforms traditional style guidelines into automated
 
 By integrating these checks into the development process with tools like ArchUnit, instant feedback is provided when something doesn't match the agreed standards. For example, a test can immediately flag when Logger fields are not declared as private, static, and final.
 
-This approach not only saves time but also reduces the risk of human error. It enables teams to focus on building features, while the code itself enforces architectural rules. Every build or test run verifies these rules, ensuring that coding conventions remain consistent throughout the project.
+This approach not only saves time but also reduces the risk of human error. It enables teams to focus on building features, while the code itself enforces coding conventions. Every build or test run verifies these rules, ensuring that coding conventions remain consistent throughout the project.
 
 ## Using ArchUnit
 
-For Java projects, ArchUnit proves to be a practical tool for automatically enforcing coding rules. The following outlines the steps to set it up and define 
+For Java projects, ArchUnit proves to be a practical tool for automatically enforcing coding rules. The following outlines the steps to set it up and define rules.
 
 ### Setting Up ArchUnit
 
-* Add the Dependency: If you’re using Maven, add this to your pom.xml:
+* **Add the Dependency**: For Maven projects, add this to the `pom.xml`:
 
 ```xml
 <dependency>
@@ -36,7 +36,7 @@ For Java projects, ArchUnit proves to be a practical tool for automatically enfo
 </dependency>
 ```
 
-* Create a Test Class: Create a test class where your architectural rules will live:
+* **Create a Test Class**: Create a test class to hold the rules:
 ```java
 public class CodingRulesTest {
 
