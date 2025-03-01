@@ -71,7 +71,7 @@ const config: Config = {
           to: '/about', label: 'About', position: 'left',
         },
         {
-          href: 'https://github.com/bongnv/bongnv.com',
+          href: 'https://github.com/bongnv',
           position: 'right',
           className: 'header-github-link',
           'aria-label': 'GitHub repository',
