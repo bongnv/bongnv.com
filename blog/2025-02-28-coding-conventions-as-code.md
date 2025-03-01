@@ -1,9 +1,10 @@
 ---
-title: Coding Convention as Code with ArchUnit
+title: Coding Conventions as Code with ArchUnit
 date: 2025-02-28
 description: Explore how to automate coding conventions using ArchUnit in Java projects. This blog explains how to set up ArchUnit, define coding conventions, and overcome common challenges, ensuring a cleaner, more consistent codebase.
+tags: ["java", "conventions", "archunit"]
 ---
-## Why Conventions Matter
+## Introduction
 
 In software development, coding conventions ensure that the code remains clean, consistent, and easy to understand. They guide how to name files, format code, and structure projects so that teams can collaborate smoothly.
 
@@ -11,9 +12,9 @@ Traditionally, these conventions are shared as documents or style guides. This m
 
 This blog explores how to make coding conventions an integral part of the source code. With tools like ArchUnit, it becomes possible to automatically verify that a Java project follows the agreed rules. This approach not only saves time but also maintains high code quality without relying solely on manual review.
 
-## Coding Convention as Code
+## Coding Conventions as Code
 
-Coding Convention as Code transforms traditional style guidelines into automated checks. Instead of relying on documents and manual reviews, rules are defined directly in code—ensuring that they are continuously enforced as the project evolves.
+Coding Convention as Code is an idea to transform traditional style guidelines into automated checks within the code. Instead of relying on documents and manual reviews, rules are defined directly in the codebase, ensuring they are continuously enforced as the project evolves.
 
 By integrating these checks into the development process with tools like ArchUnit, instant feedback is provided when something doesn't match the agreed standards. For example, a test can immediately flag when Logger fields are not declared as private, static, and final.
 
@@ -21,7 +22,7 @@ This approach not only saves time but also reduces the risk of human error. It e
 
 ## Using ArchUnit
 
-For Java projects, ArchUnit proves to be a practical tool for automatically enforcing coding rules. The following outlines the steps to set it up and define rules.
+For Java projects, ArchUnit proves to be a practical tool for automatically enforcing coding rules. The following outline the steps to set it up and define rules.
 
 ### Setting Up ArchUnit
 
@@ -87,7 +88,7 @@ By carefully balancing enforcement, high code quality can be maintained while ke
 
 ## Conclusion
 
-Using ArchUnit to enforce coding conventions as code offers many benefits. It automates rule enforcement, reduces errors, and keeps Java projects consistent and maintainable. Although there are challenges such as setup time, a learning curve, and static analysis limits, these can be managed with gradual adoption. This approach allows more focus on building features and less on manual reviews.
+Using ArchUnit to enforce coding conventions as code offers many benefits. It automates rule enforcement, reduces mistakes, and keeps Java projects consistent and maintainable. Although there are challenges such as setup time, a learning curve, and static analysis limits, these can be managed with gradual adoption and custom rules. This approach allows more focus on building features and less on manual reviews.
 
 ## References
 
