@@ -1,6 +1,5 @@
 ---
-title: About
-published: true
+title: Bong Nguyen
 ---
 
 ## Hi!
