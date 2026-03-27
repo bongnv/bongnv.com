@@ -226,6 +226,12 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
+.prose h3 + p {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
 .prose h4,
 .prose h5,
 .prose h6 {
