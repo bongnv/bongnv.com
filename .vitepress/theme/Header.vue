@@ -19,7 +19,7 @@ function isActive(path: string) {
           v-for="page in pages"
           :key="page.url"
           :href="page.url"
-          :class="{ active: isActive(page.url) || (page.url === '/pages/blog' && isActive('/posts/')) }"
+          :class="{ active: isActive(page.url) || (page.url === '/blog' && isActive('/posts/')) }"
         >{{ page.frontmatter.title }}</a>
       </nav>
     </div>

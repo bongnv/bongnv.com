@@ -10,7 +10,7 @@ interface Page {
 
 export declare const data: Page[]
 
-export default createContentLoader('pages/*.md', {
+export default createContentLoader('*.md', {
   transform(rawData): Page[] {
     return rawData
       .filter((p) => p.frontmatter.navOrder !== undefined)
