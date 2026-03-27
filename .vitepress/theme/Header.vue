@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vitepress'
+import { data as pages } from '../../docs/pages.data'
 
 const route = useRoute()
 
@@ -14,7 +15,12 @@ function isActive(path: string) {
     <div class="header-inner">
       <a href="/" class="site-name">Bong Nguyen</a>
       <nav class="nav">
-        <a href="/blog" :class="{ active: isActive('/blog') || isActive('/posts/') }">Blog</a>
+        <a
+          v-for="page in pages"
+          :key="page.url"
+          :href="page.url"
+          :class="{ active: isActive(page.url) || (page.url === '/pages/blog' && isActive('/posts/')) }"
+        >{{ page.frontmatter.title }}</a>
       </nav>
     </div>
   </header>

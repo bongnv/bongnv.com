@@ -137,6 +137,4 @@ The investment in setting this up pays compound interest. Every rule you encode,
 * [ArchUnit Getting Started](https://www.archunit.org/getting-started)
 * [pre-commit](https://pre-commit.com/)
 
----
-
-_This post was written with AI assistance. The ideas and opinions are my own._
+> Disclosure: This post was written with AI assistance. The ideas and opinions are my own.
