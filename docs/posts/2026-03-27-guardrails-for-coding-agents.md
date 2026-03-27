@@ -38,7 +38,7 @@ Running `mvn spotless:apply` after generation means formatting is never a review
 
 ### Linting and Static Analysis
 
-Static analysis tools like Checkstyle, PMD, or SpotBugs catch bad patterns that a formatter cannot. Unused imports, overly complex methods, null dereference risks—these are exactly the kinds of mistakes that agents make when they generate boilerplate or copy patterns without full context.
+Static analysis tools like Checkstyle, PMD, or SpotBugs catch bad patterns that a formatter cannot: unused imports, overly complex methods, null dereference risks. These are exactly the kinds of mistakes that agents make when they generate boilerplate or copy patterns without full context.
 
 ```xml
 <plugin>
@@ -126,7 +126,7 @@ The guardrails do not make the agent smarter. They make the agent's mistakes vis
 
 ## Conclusion
 
-The value of coding agents depends entirely on how quickly and reliably they can self-correct. A well-set-up feedback loop—quality checks, tests, hooks, and CI—turns a fast-but-unpredictable agent into a fast-and-trustworthy one.
+The value of coding agents depends entirely on how quickly and reliably they can self-correct. A well-set-up feedback loop of quality checks, tests, hooks, and CI turns a fast-but-unpredictable agent into a fast-and-trustworthy one.
 
 The investment in setting this up pays compound interest. Every rule you encode, every test you write, every hook you configure works for every session that follows. The better your guardrails, the more confidently you can delegate.
 
