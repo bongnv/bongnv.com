@@ -11,17 +11,26 @@ Sydney, Australia · 11/2023 - Present
 ### Senior Software Engineer (Tech Lead) at SafetyCulture
 Sydney, Australia · 06/2021 - 11/2023
 
-### Lead Software Engineer at Grab
-Singapore · 03/2020 - 06/2021
+- Analytics service: re-architected to replace a scaling bottleneck, processing terabytes of data per day using Amazon EMR, Apache Hudi, CubeJS, and Citus
+- `s12app` and `s12postgres`: Go libraries adopted by ~100 microservices across the company
 
-### Software Engineer to Senior Software Engineer at Grab
-Singapore · 02/2017 - 03/2020
+### Software Engineer to Lead Software Engineer at Grab
+Singapore · 02/2017 - 06/2021
+
+- GrabRewards: built from scratch as a founding member, scaled to SEA's largest loyalty program using Go, MySQL, Redis, ElasticSearch, and Kafka
+- Offers Platform: promotions system serving all Grab services
+- GrabRewards CMS portal: built with ReactJS, Redux, and Go
+- GXS backend framework: Go microservices foundation for Grab Digibank as a founding member
 
 ### Software Engineer at Early-stage Startup
 Vietnam · 09/2015 - 01/2017
 
+- BIDV BUNO: P2P money transfer app backend using Spring, Hibernate, MySQL, and ActiveMQ
+
 ### Game Developer to Programmer Supervisor at Gameloft
 Vietnam · 01/2013 - 09/2015
+
+- Android titles: *The Amazing Spider-Man 2*, *Brothers in Arms 3*, *Order & Chaos 2*, *Playmobil Pirates*, *UNO & Friends*
 
 ## Education & Awards
 
